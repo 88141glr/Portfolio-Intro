@@ -17,7 +17,7 @@
 
 <div class="center-container">
     <div class="centered-content">
-        <!-- Your content goes here -->
+        Hallo, ik ben Dennis. Dit is een portfolio.
     </div>
 </div>
 </body>
