@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +20,7 @@
 
 <div class="center-container">
     <div class="centered-content">
+        <img src="Media/dennis.jpg">
         Hallo, ik ben Dennis. Dit is een portfolio.
     </div>
 </div>
