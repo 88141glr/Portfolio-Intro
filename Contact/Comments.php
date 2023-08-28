@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comments</title>
+    <link rel="stylesheet" href="../Style/style.css">
+    <script src="../Script/script.js"></script>
 </head>
 <body>
     <h2>Comments</h2>

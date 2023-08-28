@@ -13,9 +13,10 @@
 <body>
     <div class="header">
 <ul>
-  <li><a class="active" href="#home">Home</a></li>
-  <li><a href="#news">Over Mij</a></li>
-  <li><a href="#contact">Contact</a></li>
+  <li><a class="active" href="index.php">Home</a></li>
+  <li><a href="#">Over Mij</a></li>
+  <li><a href="Contact/Contact.html">Contact</a></li>
+  <li><a href="Contact/Comments.php">Comments</a></li>
 </ul>
 
 <div class="center-container">
