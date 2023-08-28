@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="Style/styles.css">
+    <script src="Script/script.js"></script>
+    <title>Portfolio</title>
 </head>
 <body>
     <nav class="navbar">
@@ -16,6 +17,6 @@
             <!-- Add more <li> elements for additional tabs -->
         </ul>
     </nav>
-    <script src="script.js"></script>
+
 </body>
 </html>
