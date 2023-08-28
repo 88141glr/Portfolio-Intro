@@ -1,8 +1,12 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 $servername = "localhost";
 $username = "db88141";
 $password = "Kaas1001!";
-$dbname = "Comments";
+$dbname = "88141_database";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -10,27 +14,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Sanitize and validate user inputs
-$naam = mysqli_real_escape_string($conn, $_POST['naam']);
-$email = mysqli_real_escape_string($conn, $_POST['email']);
-$telefoonnummer = mysqli_real_escape_string($conn, $_POST['telefoonnummer']);
-$bedrijfnaam = mysqli_real_escape_string($conn, $_POST['bedrijfnaam']);
-$message = mysqli_real_escape_string($conn, $_POST['message']);
+$naam = $_POST['naam'];
+$email = $_POST['email'];
+$telefoonnummer = $_POST['telefoonnummer'];
+$bedrijfnaam = $_POST['bedrijfnaam'];
+$message = $_POST['message'];
 
-// You can add more validation checks if needed
+$sql = "INSERT INTO Comments (naam, email, telefoonnummer, bedrijfnaam, messages)
+        VALUES ('$naam', '$email', '$telefoonnummer', '$bedrijfnaam', '$message')";
 
-$sql = "INSERT INTO comments (naam, email, telefoonnummer, bedrijfnaam, message)
-        VALUES (?, ?, ?, ?, ?)";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sssss", $naam, $email, $telefoonnummer, $bedrijfnaam, $message);
-
-if ($stmt->execute()) {
-    header("Location: Contact.php"); // Redirect back to the form page
+if ($conn->query($sql) === TRUE) {
+    header("Location: Contact.html"); // Redirect back to the form page
 } else {
-    echo "Error: " . $stmt->error;
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$stmt->close();
 $conn->close();
 ?>
