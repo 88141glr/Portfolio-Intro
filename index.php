@@ -20,7 +20,7 @@
 
 <div class="center-container">
     <div class="centered-content">
-        <img src="Media/dennis.jpg">
+        <img src="Media/dennis.jpg"><br/>
         Hallo, ik ben Dennis. Dit is een portfolio.
     </div>
 </div>
