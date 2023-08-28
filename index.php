@@ -9,16 +9,16 @@
 </head>
 <body>
     <div class="header">
-  <h2>Scroll Down</h2>
-  <p>Scroll down to see the sticky effect.</p>
-</div>
-
 <ul>
   <li><a class="active" href="#home">Home</a></li>
-  <li><a href="#news">News</a></li>
+  <li><a href="#news">Over Mij</a></li>
   <li><a href="#contact">Contact</a></li>
 </ul>
 
-
+<div class="center-container">
+    <div class="centered-content">
+        <!-- Your content goes here -->
+    </div>
+</div>
 </body>
 </html>

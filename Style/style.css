@@ -32,3 +32,12 @@ body {
   .active {
     background-color: #4CAF50;
   }
+
+
+  /* Div dingen */
+  .center-container {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center;     /* Vertically center */
+    height: 100vh;           /* Adjust this based on your needs */
+}
