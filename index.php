@@ -8,15 +8,17 @@
     <title>Portfolio</title>
 </head>
 <body>
-    <nav class="navbar">
-        <ul class="nav-list">
-            <li class="nav-item active"><a href="#">Home</a></li>
-            <li class="nav-item"><a href="#">About</a></li>
-            <li class="nav-item"><a href="#">Services</a></li>
-            <li class="nav-item"><a href="#">Contact</a></li>
-            <!-- Add more <li> elements for additional tabs -->
-        </ul>
-    </nav>
+    <div class="header">
+  <h2>Scroll Down</h2>
+  <p>Scroll down to see the sticky effect.</p>
+</div>
+
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
+
 
 </body>
 </html>
