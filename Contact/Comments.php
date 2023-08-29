@@ -18,6 +18,10 @@
 
     <h2>Comments</h2>
     <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
     $servername = "localhost";
     $username = "db88141";
     $password = "Kaas1001!";
@@ -29,7 +33,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM comments";
+    $sql = "SELECT * FROM Comments";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
