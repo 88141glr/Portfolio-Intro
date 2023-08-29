@@ -17,6 +17,7 @@
   <li><a href="#">Over Mij</a></li>
   <li><a href="Contact/Contact.html">Contact</a></li>
   <li><a href="Contact/Comments.php">Comments</a></li>
+  <li><a href="Projects/projects.php">Projecten</a></li>
 </ul>
 
 <div class="center-container">
