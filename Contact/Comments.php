@@ -38,11 +38,11 @@ ini_set('display_errors', '1');
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<p><strong>Name:</strong> " . $row['naam'] . "</p>";
-            echo "<p><strong>Email:</strong> " . $row['email'] . "</p>";
-            echo "<p><strong>Phone:</strong> " . $row['telefoonnummer'] . "</p>";
-            echo "<p><strong>Company:</strong> " . $row['bedrijfnaam'] . "</p>";
-            echo "<p><strong>Message:</strong> " . $row['messages'] . "</p><hr>";
+            echo "<p><strong>Name:</strong> " . $row['Naam'] . "</p>";
+            echo "<p><strong>Email:</strong> " . $row['Email'] . "</p>";
+            echo "<p><strong>Phone:</strong> " . $row['Telefoonnummer'] . "</p>";
+            echo "<p><strong>Company:</strong> " . $row['Bedrijfnaam'] . "</p>";
+            echo "<p><strong>Message:</strong> " . $row['Messages'] . "</p><hr>";
         }
     } else {
         echo "No comments yet.";
