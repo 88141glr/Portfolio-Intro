@@ -1,0 +1,17 @@
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.project-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+.project-image {
+    max-width: 100%;
+    height: auto;
+}
+.project-download {
+    display: block;
+    margin-top: 10px;
+}
