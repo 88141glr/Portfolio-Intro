@@ -39,5 +39,42 @@
         
             <input type="submit" value="Submit" id="submitBtn">
         </form>
+
+        <h2>Comments</h2>
+        <?php
+    
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+    
+        $servername = "localhost";
+        $username = "db88141";
+        $password = "Kaas1001!";
+        $dbname = "88141_database";
+    
+        $conn = new mysqli($servername, $username, $password, $dbname);
+    
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+    
+        $sql = "SELECT * FROM Comments";
+        $result = $conn->query($sql);
+    
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<p><strong>Name:</strong> " . $row['Naam'] . "</p>";
+                echo "<p><strong>Email:</strong> " . $row['Email'] . "</p>";
+                echo "<p><strong>Phone:</strong> " . $row['Telefoonnummer'] . "</p>";
+                echo "<p><strong>Company:</strong> " . $row['Bedrijfnaam'] . "</p>";
+                echo "<p><strong>Message:</strong> " . $row['Messages'] . "</p><hr>";
+            }
+        } else {
+            echo "No comments yet.";
+        }
+    
+        $conn->close();
+        ?>
+
+        
 </body>
 </html>
