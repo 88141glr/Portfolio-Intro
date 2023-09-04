@@ -13,8 +13,7 @@
         <ul>
           <li><a href="../index.php">Home</a></li>
           <li><a href="#">Over Mij</a></li>
-          <li><a class="active" href="Contact.html">Contact</a></li>
-          <li><a href="Comments.php">Comments</a></li>
+          <li><a class="active" href="Contact.php">Contact</a></li>
         </ul>
 
         <h2>Contact</h2>

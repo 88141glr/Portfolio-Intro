@@ -41,3 +41,8 @@ body {
     align-items: center;     /* Vertically center */
     height: 100vh;           /* Adjust this based on your needs */
 }
+
+
+ul.navbar li.login {
+  float: right; /* Align the login button to the right */
+}

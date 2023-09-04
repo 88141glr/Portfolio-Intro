@@ -15,9 +15,9 @@
 <ul>
   <li><a class="active" href="index.php">Home</a></li>
   <li><a href="#">Over Mij</a></li>
-  <li><a href="Contact/Contact.html">Contact</a></li>
-  <li><a href="Contact/Comments.php">Comments</a></li>
+  <li><a href="Contact/Contact.php">Contact</a></li>
   <li><a href="Projects/projects.php">Projecten</a></li>
+  <li class="login"><a href="#">Login</a></li>
 </ul>
 
 <div class="center-container">

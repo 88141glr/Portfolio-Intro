@@ -13,7 +13,7 @@
         <textarea name="description" required></textarea><br>
         
         <label for="image">Image:</label>
-        <input type="file" name="image" accept="image/*" required><br>
+        <input type="file" name="image" accept="Uploads/*" required><br>
         
         <label for="project_file">Project File:</label>
         <input type="file" name="project_file" required><br>
