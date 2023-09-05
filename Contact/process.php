@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -8,26 +7,33 @@ $username = "db88141";
 $password = "Kaas1001!";
 $dbname = "88141_database";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    $naam = $_POST['naam'];
+    $email = $_POST['email'];
+    $telefoonnummer = $_POST['telefoonnummer'];
+    $bedrijfnaam = $_POST['bedrijfnaam'];
+    $message = $_POST['message'];
+
+    // Use prepared statements to prevent SQL injection
+    $stmt = $pdo->prepare("INSERT INTO Comments (naam, email, telefoonnummer, bedrijfnaam, messages) VALUES (:naam, :email, :telefoonnummer, :bedrijfnaam, :message)");
+    
+    $stmt->bindParam(':naam', $naam);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':telefoonnummer', $telefoonnummer);
+    $stmt->bindParam(':bedrijfnaam', $bedrijfnaam);
+    $stmt->bindParam(':message', $message);
+
+    if ($stmt->execute()) {
+        header("Location: Contact.php?status=success"); // Redirect with success status
+    } else {
+        header("Location: Contact.php?status=error"); // Redirect with error status
+    }
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
 
-$naam = $_POST['naam'];
-$email = $_POST['email'];
-$telefoonnummer = $_POST['telefoonnummer'];
-$bedrijfnaam = $_POST['bedrijfnaam'];
-$message = $_POST['message'];
-
-$sql = "INSERT INTO Comments (naam, email, telefoonnummer, bedrijfnaam, messages)
-        VALUES ('$naam', '$email', '$telefoonnummer', '$bedrijfnaam', '$message')";
-
-if ($conn->query($sql) === TRUE) {
-    header("Location: Contact.html"); // Redirect back to the form page
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-$conn->close();
+$pdo = null; // Close the PDO connection
 ?>

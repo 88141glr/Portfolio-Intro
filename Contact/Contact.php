@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
+
+
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,13 +16,34 @@
     <script src="../Script/ContactJS.js"></script>
 </head>
 <body>
-    <div class="header">
+<div class="header">
         <ul>
-          <li><a href="../index.php">Home</a></li>
-          <li><a href="#">Over Mij</a></li>
-          <li><a class="active" href="Contact.php">Contact</a></li>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="#">Over Mij</a></li>
+            <li><a class="active" href="#">Contact</a></li>
+            <li><a href="../Projects/projects.php">Projecten</a></li>
+            
+            <?php
+            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
+                // Show the "Logout" link when logged in
+                echo '<li><a href="../ADMIN/admincomments.php">Admin</a></li>';
+                echo '<li><a href="../ADMIN/Login/logout.php">Logout</a></li>';
+            } else {
+                // Show the "Login" link when not logged in
+                echo '<li><a href="../ADMIN/Login/login.php">Login</a></li>';
+            }
+            ?>
         </ul>
-
+    </div>
+    <?php
+if (isset($_GET['status'])) {
+    if ($_GET['status'] === 'success') {
+        echo '<p class="success-message">Submission successful!</p>';
+    } elseif ($_GET['status'] === 'error') {
+        echo '<p class="error-message">Submission failed. Please try again.</p>';
+    }
+}
+?>
         <h2>Contact</h2>
         <form action="process.php" method="post">
             <label for="naam">Naam:</label>
