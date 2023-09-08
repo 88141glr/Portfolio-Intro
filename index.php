@@ -59,8 +59,15 @@ session_start();
     <div class="center-container">
         <div class="centered-content">
             <img src="Media/dennis.jpg"><br/>
-            Hallo, ik ben Dennis. Dit is een portfolio.
+            <div class='box'>
+                Ik ben Dennis Janssen &middot; Software Developer <br>
+                <div class='fst-italic'>Welkom op mijn site.</div>
+                <p class="fw-lighter fst-italic">TEL: +31 6 58987997 &middot; Email: dennis.b.s.janssen@gmail.com</p>
+
+            </div>
         </div>
     </div>
+
+    
 </body>
 </html>

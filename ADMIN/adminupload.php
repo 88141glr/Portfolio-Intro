@@ -16,7 +16,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <h1>Upload a Project</h1>
     <header class="p-3 text-bg-dark">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -64,6 +63,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     }
 }
 ?>
+ <h1>Upload a Project</h1>
     <form action="uploadprocess.php" method="post" enctype="multipart/form-data">
         <label class="form-label" for="name">Project Name:</label>
         <input class="form-control" type="text" name="name" required><br>
