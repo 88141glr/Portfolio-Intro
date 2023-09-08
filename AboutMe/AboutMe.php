@@ -1,25 +1,22 @@
-<?php
-// Start a session to manage user authentication
-session_start();
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
 
-// Check if the user is logged in; if not, redirect to the login page
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: Login/login.php"); // Redirect to your login page
-    exit();
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>About Me</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-<header class="p-3 text-bg-dark">
+
+    
+  </head>
+  <body>
+  <header class="p-3 text-bg-dark">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -28,7 +25,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="../index.php" class="nav-link px-2 text-white">Home</a></li>
-          <li><a href="../AboutMe/AboutMe.php" class="nav-link px-2 text-white">Over Mij</a></li>
+          <li><a href="#" class="nav-link px-2 text-secondary">Over Mij</a></li>
           <li><a href="../Projects/projects.php" class="nav-link px-2 text-white">Projecten</a></li>
           <li><a href="../Contact/Contact.php" class="nav-link px-2 text-white">Contact</a></li>
         </ul>
@@ -57,68 +54,43 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             ?>
 
         </header>
-</body>
+
+<div class="col-lg-8 mx-auto p-4 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+    <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-4">Over Mij</span>
+    </a>
+  </header>
+
+  <main>  
+    <h1 class="text-body-emphasis">CV</h1>
+    <p class="fs-5 col-md-8">Hier is mijn CV te vinden.</p>
+
+    <div class="mb-5">
+      <a href="#" class="btn btn-primary btn-lg px-4 disabled" aria-disabled="true">Bekijk mijn CV</a>
+    </div>
+    <p class="fw-lighter fst-italic">CV is (huidig) niet beschikbaar</p>
+
+    <hr class="col-3 col-md-2 mb-5">
+
+    <div class="row g-5">
+      <div class="col-md-6">
+        <h2 class="text-body-emphasis">Over Mij</h2>
+        <p>Ik ben Dennis Janssen, student software developer op het Grafisch Lyceum Rotterdam. Ik ben geboren op 14 februari 2005. Mijn hobbie is voornamelijk gamen, alhoewel dit tegenwoordig wat minder is.</p>
+      </div>
+
+      <!-- <div class="col-md-6">
+        <h2 class="text-body-emphasis">Guides</h2>
+        <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
+      </div> -->
+    </div>
+  </main>
+  <footer class="pt-5 my-5 text-body-secondary border-top">
+    Dennis Janssen &middot; Software Developer
+  </footer>
+</div>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
 </html>
-<?php
-
-// Include your database connection file
-include("adminconfig.php");
-
-// Function to delete a comment by ID
-function deleteComment($conn, $commentID) {
-    $sql = "DELETE FROM Comments WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $commentID);
-
-    if ($stmt->execute()) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// Handle comment deletion
-if (isset($_POST['delete_comment'])) {
-    $commentID = $_POST['comment_id'];
-    
-    if (deleteComment($conn, $commentID)) {
-        echo "Comment deleted successfully!";
-    } else {
-        echo "Error deleting comment.";
-    }
-}
-
-// Fetch and display comments from the database
-$sql = "SELECT id, naam, email, telefoonnummer, bedrijfnaam, messages FROM Comments";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<table class='table'>";
-    echo "<tr><th>Name</th><th>Email</th><th>Phone Number</th><th>Company Name</th><th>Message</th><th>Action</th></tr>";
-    
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['naam'] . "</td>";
-        echo "<td>" . $row['email'] . "</td>";
-        echo "<td>" . $row['telefoonnummer'] . "</td>";
-        echo "<td>" . $row['bedrijfnaam'] . "</td>";
-        echo "<td>" . $row['messages'] . "</td>";
-        echo "<td>";
-        echo "<form method='post'>";
-        echo "<input type='hidden' name='comment_id' value='" . $row['id'] . "'>";
-        echo "<input type='submit' name='delete_comment' value='Delete'>";
-        echo "</form>";
-        echo "</td>";
-        echo "</tr>";
-    }
-    
-    echo "</table>";
-} else {
-    echo "No comments found.";
-}
-
-// Close the database connection
-$conn->close();
-?>
-
-

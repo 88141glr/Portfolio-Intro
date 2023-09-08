@@ -9,17 +9,15 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Project Upload</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<header class="p-3 text-bg-dark">
+    <h1>Upload a Project</h1>
+    <header class="p-3 text-bg-dark">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -57,68 +55,28 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             ?>
 
         </header>
+   <?php
+    if (isset($_GET['status'])) {
+    if ($_GET['status'] === 'success') {
+        echo '<p class="success-message">Submission successful!</p>';
+    } elseif ($_GET['status'] === 'error') {
+        echo '<p class="error-message">Submission failed. Please try again.</p>';
+    }
+}
+?>
+    <form action="uploadprocess.php" method="post" enctype="multipart/form-data">
+        <label class="form-label" for="name">Project Name:</label>
+        <input class="form-control" type="text" name="name" required><br>
+        
+        <label class="form-label" for="description">Link</label>
+        <textarea class="form-control" name="description" required></textarea><br>
+        
+        <label class="form-label" for="image">Image:</label>
+        <input class="form-control" type="file" name="image" required><br>
+        
+      
+        
+        <input class="btn btn-success" type="submit" value="Upload">
+    </form>
 </body>
 </html>
-<?php
-
-// Include your database connection file
-include("adminconfig.php");
-
-// Function to delete a comment by ID
-function deleteComment($conn, $commentID) {
-    $sql = "DELETE FROM Comments WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $commentID);
-
-    if ($stmt->execute()) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// Handle comment deletion
-if (isset($_POST['delete_comment'])) {
-    $commentID = $_POST['comment_id'];
-    
-    if (deleteComment($conn, $commentID)) {
-        echo "Comment deleted successfully!";
-    } else {
-        echo "Error deleting comment.";
-    }
-}
-
-// Fetch and display comments from the database
-$sql = "SELECT id, naam, email, telefoonnummer, bedrijfnaam, messages FROM Comments";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<table class='table'>";
-    echo "<tr><th>Name</th><th>Email</th><th>Phone Number</th><th>Company Name</th><th>Message</th><th>Action</th></tr>";
-    
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['naam'] . "</td>";
-        echo "<td>" . $row['email'] . "</td>";
-        echo "<td>" . $row['telefoonnummer'] . "</td>";
-        echo "<td>" . $row['bedrijfnaam'] . "</td>";
-        echo "<td>" . $row['messages'] . "</td>";
-        echo "<td>";
-        echo "<form method='post'>";
-        echo "<input type='hidden' name='comment_id' value='" . $row['id'] . "'>";
-        echo "<input type='submit' name='delete_comment' value='Delete'>";
-        echo "</form>";
-        echo "</td>";
-        echo "</tr>";
-    }
-    
-    echo "</table>";
-} else {
-    echo "No comments found.";
-}
-
-// Close the database connection
-$conn->close();
-?>
-
-

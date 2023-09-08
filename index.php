@@ -14,9 +14,6 @@ session_start();
 
     <title>Portfolio</title>
 </head>
-
-
-
 <body>
 
 <header class="p-3 text-bg-dark">
@@ -28,7 +25,7 @@ session_start();
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Over Mij</a></li>
+          <li><a href="AboutMe/AboutMe.php" class="nav-link px-2 text-white">Over Mij</a></li>
           <li><a href="Projects/projects.php" class="nav-link px-2 text-white">Projecten</a></li>
           <li><a href="Contact/Contact.php" class="nav-link px-2 text-white">Contact</a></li>
         </ul>
@@ -43,6 +40,8 @@ session_start();
                 echo '</a>';
                 echo '<ul class="dropdown-menu text-small">';
                 echo '<li><a class="dropdown-item" href="ADMIN/admincomments.php">Remove Comments</a></li>';
+                echo '<li><a class="dropdown-item" href="ADMIN/adminprojects.php">Remove Projects</a></li>';
+                echo '<li><a class="dropdown-item" href="ADMIN/adminupload.php">Upload Projects</a></li>';
                 echo '<li><hr class="dropdown-divider"></li>';
                 echo ' <li><a class="dropdown-item" href="ADMIN/Login/logout.php">Sign out</a></li>';
                 echo '</ul>';

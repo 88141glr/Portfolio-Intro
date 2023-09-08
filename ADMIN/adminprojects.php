@@ -9,12 +9,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Delete Projects</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -60,65 +57,69 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 </body>
 </html>
 <?php
+$servername = "localhost";
+$username = "db88141";
+$password = "Kaas1001!";
+$dbname = "88141_database";
 
-// Include your database connection file
-include("adminconfig.php");
+// Create a database connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Function to delete a comment by ID
-function deleteComment($conn, $commentID) {
-    $sql = "DELETE FROM Comments WHERE id = ?";
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if a project has been deleted
+if (isset($_GET['delete_status']) && $_GET['delete_status'] === 'success') {
+    echo '<p style="color: green;">Project deleted successfully.</p>';
+}
+
+// Check if a project ID is provided via GET request
+if (isset($_GET['project_id'])) {
+    $project_id = $_GET['project_id'];
+
+    // Prepare and execute a DELETE statement
+    $sql = "DELETE FROM Projects WHERE ID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $commentID);
-
-    if ($stmt->execute()) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// Handle comment deletion
-if (isset($_POST['delete_comment'])) {
-    $commentID = $_POST['comment_id'];
     
-    if (deleteComment($conn, $commentID)) {
-        echo "Comment deleted successfully!";
+    if ($stmt) {
+        $stmt->bind_param("i", $project_id);
+        if ($stmt->execute()) {
+            header("Location: adminprojects.php?delete_status=success");
+            exit();
+        } else {
+            echo "Error deleting project: " . $conn->error;
+        }
+        $stmt->close();
     } else {
-        echo "Error deleting comment.";
+        echo "Error preparing statement: " . $conn->error;
     }
 }
 
-// Fetch and display comments from the database
-$sql = "SELECT id, naam, email, telefoonnummer, bedrijfnaam, messages FROM Comments";
+// Retrieve projects from the database
+$sql = "SELECT ID, Name, Description, image_path FROM Projects";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table class='table'>";
-    echo "<tr><th>Name</th><th>Email</th><th>Phone Number</th><th>Company Name</th><th>Message</th><th>Action</th></tr>";
-    
+    echo '<h1>Delete Projects</h1>';
+    echo '<table class="table">';
+    echo '<tr><th>ID</th><th>Name</th><th>Description</th><th>Image Path</th><th>Action</th></tr>';
     while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['naam'] . "</td>";
-        echo "<td>" . $row['email'] . "</td>";
-        echo "<td>" . $row['telefoonnummer'] . "</td>";
-        echo "<td>" . $row['bedrijfnaam'] . "</td>";
-        echo "<td>" . $row['messages'] . "</td>";
-        echo "<td>";
-        echo "<form method='post'>";
-        echo "<input type='hidden' name='comment_id' value='" . $row['id'] . "'>";
-        echo "<input type='submit' name='delete_comment' value='Delete'>";
-        echo "</form>";
-        echo "</td>";
-        echo "</tr>";
+        echo '<tr>';
+        echo '<td>' . $row['ID'] . '</td>';
+        echo '<td>' . $row['Name'] . '</td>';
+        echo '<td>' . $row['Description'] . '</td>';
+        echo '<td>' . $row['image_path'] . '</td>';
+        echo '<td><a href="adminprojects.php?project_id=' . $row['ID'] . '">Delete</a></td>';
+        echo '</tr>';
     }
-    
-    echo "</table>";
+    echo '</table>';
 } else {
-    echo "No comments found.";
+    echo 'No projects found.';
 }
 
 // Close the database connection
 $conn->close();
 ?>
-
 

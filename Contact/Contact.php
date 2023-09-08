@@ -26,8 +26,8 @@ session_start();
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Over Mij</a></li>
+          <li><a href="../index.php" class="nav-link px-2 text-white">Home</a></li>
+          <li><a href="../AboutMe/AboutMe.php" class="nav-link px-2 text-white">Over Mij</a></li>
           <li><a href="../Projects/projects.php" class="nav-link px-2 text-white">Projecten</a></li>
           <li><a href="#" class="nav-link px-2 text-secondary">Contact</a></li>
         </ul>
@@ -42,13 +42,15 @@ session_start();
                 echo '</a>';
                 echo '<ul class="dropdown-menu text-small">';
                 echo '<li><a class="dropdown-item" href="../ADMIN/admincomments.php">Remove Comments</a></li>';
+                echo '<li><a class="dropdown-item" href="../ADMIN/adminprojects.php">Remove Projects</a></li>';
+                echo '<li><a class="dropdown-item" href="../ADMIN/adminupload.php">Upload Projects</a></li>';
                 echo '<li><hr class="dropdown-divider"></li>';
                 echo ' <li><a class="dropdown-item" href="../ADMIN/Login/logout.php">Sign out</a></li>';
                 echo '</ul>';
             } else {
                 // Show the "Login" link when not logged in
                 echo '   <div class="text-end">';
-                echo '   <a href="ADMIN/Login/login.php"><button type="button" class="btn btn-outline-light me-2" >Login</button></a>';
+                echo '   <a href="../ADMIN/Login/login.php"><button type="button" class="btn btn-outline-light me-2" >Login</button></a>';
                 echo '  </div>';
             }
             ?>
@@ -84,7 +86,7 @@ if (isset($_GET['status'])) {
             <textarea class="form-control" id="message" name="message" rows="4" cols="50" maxlength="300" oninput="countCharacters(this)"></textarea><br>
             <span class="form-text" id="charCount">0 / 300 characters</span>
         
-            <input type="submit" value="Submit" id="submitBtn">
+            <input class="btn btn-success" type="submit" value="Submit" id="submitBtn">
         </form>
 
         <h2>Comments</h2>

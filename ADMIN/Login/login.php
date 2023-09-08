@@ -55,8 +55,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user'])) header('Location: ../adm
                 <input type="submit" class="btn" value="Login" />
             </p>
         </form>
-
-        <a class="btn" href='register.php'>Register</a>
+<!--    <a class="btn" href='register.php'>Register</a> -->
     </div>
 
 </html>
